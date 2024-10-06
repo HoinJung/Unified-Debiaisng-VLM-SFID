@@ -40,7 +40,3 @@ Run
 ```python src/run_sd.py --target decoder --mode sfid --decoder_num 50 --t 0.5```    
 ```python src/run_codi.py --target decoder --mode sfid --decoder_num 50 --t 0.5```
 
-## TODO
-- [ ] (Add comparison method, CLIP-CAP, DeAR, and Prompt-Debias)
-- [ ] (Add XVLM for zero-shot classification)
-
