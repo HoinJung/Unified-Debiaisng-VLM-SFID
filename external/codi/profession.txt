@@ -1,0 +1,83 @@
+accountant
+animator
+architect
+assistant
+athlete
+author
+baker
+biologist
+builder
+butcher
+career counselor
+caretaker
+chef
+civil servant
+clerk
+comic book writer
+company director
+computer programmer
+cook
+decorator
+dentist
+designer
+diplomat
+director
+doctor
+economist
+editor
+electrician
+engineer
+executive
+farmer
+film director
+flight attendant
+garbage collector
+geologist
+hairdresser
+jeweler
+journalist
+judge
+juggler
+lawyer
+lecturer
+lexicographer
+library assistant
+magician
+makeup artist
+manager
+miner
+musician
+nurse
+optician
+painter
+personal assistant
+photographer
+pilot
+plumber
+police officer
+politician
+porter
+prison officer
+professor
+puppeteer
+receptionist
+sailor
+salesperson
+scientist
+secretary
+shop assistant
+sign language interpreter
+singer
+soldier
+solicitor
+surgeon
+tailor
+teacher
+translator
+travel agent
+trucker
+TV presenter
+veterinarian
+waiter
+web designer
+writer
