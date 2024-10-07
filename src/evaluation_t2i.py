@@ -52,56 +52,56 @@ def evaluate_t2i(image_directory,device):
     # 1. Mismatch rate calculation for 'man' and 'woman' separately
     df_man = df[df['expected_gender'] == 'man']
     df_woman = df[df['expected_gender'] == 'woman']
-
+    
     # Calculate mismatch rate for 'man' and 'woman' separately (for each experiment seed 'num')
     mismatch_rate_man = df_man.groupby('num')['is_matched'].apply(lambda x: 1 - x.mean())
     mismatch_rate_woman = df_woman.groupby('num')['is_matched'].apply(lambda x: 1 - x.mean())
-
+    
     # Get mean and standard deviation for both (convert to percentages and round to 2 decimals)
     mismatch_mean_std_man = mismatch_rate_man.agg(['mean', 'std']).mul(100).round(2)
     mismatch_mean_std_woman = mismatch_rate_woman.agg(['mean', 'std']).mul(100).round(2)
-
+    
     # 2. Skewed value calculation for 'person'
     df_person = df[df['expected_gender'] == 'person']
-
+    
     def skewed_value(group):
         gender_counts = group['detected_gender'].value_counts(normalize=True)
         return max(gender_counts.get('male', 0), gender_counts.get('female', 0))  # Get the larger proportion
-
+    
     # Apply skewed value calculation to each profession
     skewed_results = df_person.groupby('profession').apply(skewed_value)
-
+    
     # Get the mean of the skewed values (convert to percentage and round to 2 decimals)
     mean_skewed_value = round(skewed_results.mean() * 100, 2)
-
+    
     # 3. Overall mismatch rate calculation (only for 'man' and 'woman' cases)
     df_gender_specific = df[df['expected_gender'].isin(['man', 'woman'])]
-
+    
     # Calculate overall mismatch rate by each 'num'
-    overall_mismatch_rate_by_num = df_gender_specific.groupby('num')['is_matched'].apply(lambda x: 1 - x.mean()) * 100
-
+    overall_mismatch_rate_by_num = df_gender_specific.groupby('num')['is_matched'].apply(lambda x: 1 - x.mean())
+    
     # Get mean and standard deviation for the overall mismatch rate
-    overall_mismatch_mean_std = overall_mismatch_rate_by_num.agg(['mean', 'std']).round(2)
-
+    overall_mismatch_mean_std = overall_mismatch_rate_by_num.agg(['mean', 'std']).mul(100).round(2)
+    
     # 4. Composite mismatch rate calculation (use percentages for mismatch rates)
     composite_mismatch_rate_by_num = np.sqrt(overall_mismatch_rate_by_num**2 + abs(mismatch_rate_man - mismatch_rate_woman)**2)
-
+    
     # Get mean and standard deviation for the composite mismatch rate
-    composite_mismatch_mean_std = composite_mismatch_rate_by_num.agg(['mean', 'std']).round(2)
-
+    composite_mismatch_mean_std = composite_mismatch_rate_by_num.agg(['mean', 'std']).mul(100).round(2)
+    
     # Display the results in percentages with 2 decimal points
     print("Mismatch Rate (Mean and Std) for 'man' (in %):")
     print(mismatch_mean_std_man)
-
+    
     print("\nMismatch Rate (Mean and Std) for 'woman' (in %):")
     print(mismatch_mean_std_woman)
-
+    
     print("\nOverall Mismatch Rate (Mean and Std) (in %):")
     print(overall_mismatch_mean_std)
-
+    
     print("\nComposite Mismatch Rate (Mean and Std) (in %):")
     print(composite_mismatch_mean_std)
-
-
+    
+    
     print("\nMean Skewed Value for 'person' (in %):")
     print(mean_skewed_value)
