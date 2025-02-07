@@ -153,7 +153,7 @@ for ann in annotations:
         id_to_captions[image_id] = []
     id_to_captions[image_id].append(caption)
 
-imid_2_gender = pickle.load(open('external/clipcapval_imid_gender.pkl','rb'))
+imid_2_gender = pickle.load(open('external/clipcap/val_imid_gender.pkl','rb'))
 # Assuming imid_2_gender is defined
 filtered_image_ids = set(imid_2_gender.keys())
 
