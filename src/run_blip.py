@@ -61,7 +61,7 @@ for ann in annotations:
     if image_id not in id_to_captions:
         id_to_captions[image_id] = []
     id_to_captions[image_id].append(caption)
-imid_2_gender = pickle.load(open('external/clipcap/Data/val_imid_gender.pkl','rb'))
+imid_2_gender = pickle.load(open('external/clipcap/val_imid_gender.pkl','rb'))
 # Assuming imid_2_gender is defined
 filtered_image_ids = set(imid_2_gender.keys())
 
